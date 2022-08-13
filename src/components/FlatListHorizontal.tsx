@@ -1,22 +1,14 @@
 import React from 'react';
-import {
-  Image,
-  FlatList,
-} from 'react-native';
+import {Image, FlatList} from 'react-native';
+import {useTailwind} from 'tailwind-rn';
 
-export const FlatListHorizontal = ({ data }) => {
-  const styles = {
-    imageStyle: {
-      height: 200,
-      width: 200,
-      margin: 10,
-    },
-  };
+export const FlatListHorizontal = ({data}) => {
+  const tailwind = useTailwind();
 
   const SmallImage = ({item}) => {
     return (
       <Image
-        style={styles.imageStyle}
+        style={tailwind('m-2.5 h-48 w-48')}
         source={{
           uri: item.download_url,
         }}

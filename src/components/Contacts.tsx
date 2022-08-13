@@ -1,35 +1,13 @@
 import React, {useEffect} from 'react';
-import {Text, View, TextInput, StyleSheet, Button} from 'react-native';
+import {Text, View, TextInput, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useTailwind} from 'tailwind-rn';
 
 let STORAGE_KEY = '@contacts';
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    color: 'black',
-    borderWidth: 1,
-    padding: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: 50,
-    marginRight: 50,
-    marginTop: 10,
-  },
-  text: {
-    color: 'black',
-    padding: 5,
-    fontSize: 15,
-  },
-  contactsContainer: {
-    padding: 10,
-  },
-});
-
 export function Contacts() {
+  const tailwind = useTailwind();
+
   const [input, setInput] = React.useState({
     contactName: '',
     phoneNumber: '',
@@ -86,20 +64,21 @@ export function Contacts() {
 
   return (
     <View>
-      <View style={styles.contactsContainer}>
+      <View style={tailwind('p-2.5')}>
+        <Text style={tailwind('text-black text-xl')}>Existing Contacts</Text>
         {data &&
           data.map(contact => (
-            <Text key={contact.contactName} style={styles.text}>
+            <Text
+              key={contact.contactName}
+              style={tailwind('text-black p-1 text-base')}>
               {contact.contactName} : {contact.phoneNumber}
             </Text>
           ))}
       </View>
-      <Text style={{color: 'black', fontSize: 20, marginLeft: 10}}>
-        New Contact
-      </Text>
+      <Text style={tailwind('text-black ml-2.5 text-xl')}>New Contact</Text>
       <TextInput
         placeholderTextColor="gray"
-        style={styles.input}
+        style={tailwind('text-black p-2.5 m-3 border')}
         value={input.contactName}
         placeholder="Enter Name"
         onChangeText={text =>
@@ -111,7 +90,7 @@ export function Contacts() {
       />
       <TextInput
         placeholderTextColor="gray"
-        style={styles.input}
+        style={tailwind('text-black p-2.5 m-3 border')}
         value={input.phoneNumber}
         placeholder="Enter phone number"
         onChangeText={text =>
@@ -121,7 +100,7 @@ export function Contacts() {
           })
         }
       />
-      <View style={styles.buttonContainer}>
+      <View style={tailwind('flex-row justify-between ml-12 mr-12 mt-2.5')}>
         <Button onPress={onSubmitHandler} title="Add Contact" />
         <Button onPress={onClearHandler} title="Clear All Contacts" />
       </View>

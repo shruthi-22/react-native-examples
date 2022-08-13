@@ -1,37 +1,7 @@
-import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import RNModal from "react-native-modal";
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#ffffff",
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: "#000",
-    borderStyle: "solid",
-  },
-  header: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    paddingTop: 10,
-    textAlign: "center",
-    fontSize: 24,
-  },
-  body: {
-    justifyContent: "center",
-    paddingHorizontal: 15,
-    minHeight: 100,
-  },
-  footer: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    flexDirection: "row",
-  },
-});
-
+import * as React from 'react';
+import {Text, View} from 'react-native';
+import RNModal from 'react-native-modal';
+import {useTailwind} from 'tailwind-rn';
 
 export const Modal = ({
   isVisible = false,
@@ -39,11 +9,12 @@ export const Modal = ({
   children,
   ...props
 }) => {
+
   return (
     <RNModal
-    isVisible={isVisible}
-    onBackdropPress={onBackdropPress}  
-    animationInTiming={1000}
+      isVisible={isVisible}
+      onBackdropPress={onBackdropPress}
+      animationInTiming={1000}
       animationOutTiming={1000}
       backdropTransitionInTiming={800}
       backdropTransitionOutTiming={800}
@@ -53,23 +24,42 @@ export const Modal = ({
   );
 };
 
-const ModalContainer = ({ children }) => (
-  <View style={styles.container}>{children}</View>
-);
+const ModalContainer = ({children}) => {
+  const tailwind = useTailwind();
+  return (
+    <View
+      style={tailwind(
+        'border-black rounded-2xl bg-white border border-solid ',
+      )}>
+      {children}
+    </View>
+  );
+};
 
-const ModalHeader = ({ title }) => (
-  <View style={styles.header}>
-    <Text style={styles.text}>{title}</Text>
-  </View>
-);
+const ModalHeader = ({title}) => {
+  const tailwind = useTailwind();
+  return (
+    <View style={tailwind('justify-center items-center')}>
+      <Text style={tailwind('text-center text-black text-2xl pt-2.5')}>
+        {title}
+      </Text>
+    </View>
+  );
+};
 
-const ModalBody = ({ children }) => (
-  <View style={styles.body}>{children}</View>
-);
+const ModalBody = ({children}) => {
+  const tailwind = useTailwind();
+  return <View style={tailwind('justify-center px-3.5')}>{children}</View>;
+};
 
-const ModalFooter = ({ children }) => (
-  <View style={styles.footer}>{children}</View>
-);
+const ModalFooter = ({children}) => {
+  const tailwind = useTailwind();
+  return (
+    <View style={tailwind('justify-center items-center flex-row p-2.5')}>
+      {children}
+    </View>
+  );
+};
 
 Modal.Header = ModalHeader;
 Modal.Container = ModalContainer;

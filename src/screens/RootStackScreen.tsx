@@ -6,10 +6,9 @@ import HomeScreen from './HomeScreen';
 
 const RootStack = createStackNavigator();
 
-const RootStackScreen = ({navigation}) => (
+const RootStackScreen = () => (
   <RootStack.Navigator
     screenOptions={{headerShown: false}}
-    // initialRouteName="LandingScreen"
   >
     <RootStack.Screen name="LandingScreen" component={LandingScreen} />
     <RootStack.Screen name="SignUpScreen" component={SignUpScreen} />

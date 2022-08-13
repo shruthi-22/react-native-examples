@@ -11,11 +11,16 @@ import type {Node} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootStackScreen from './src/screens/RootStackScreen';
 
+import {TailwindProvider} from 'tailwind-rn';
+import utilities from './tailwind.json';
+
 const App: () => Node = () => {
   return (
-    <NavigationContainer>
-      <RootStackScreen />
-    </NavigationContainer>
+    <TailwindProvider utilities={utilities}>
+      <NavigationContainer>
+        <RootStackScreen />
+      </NavigationContainer>
+    </TailwindProvider>
   );
 };
 

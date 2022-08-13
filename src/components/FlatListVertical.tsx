@@ -5,34 +5,26 @@ import {
   Image,
   View,
   FlatList,
-  StyleSheet,
 } from 'react-native';
 import {Card} from 'react-native-shadow-cards';
-import {Modal} from './Modal';
+import { Modal } from './Modal';
+import {useTailwind} from 'tailwind-rn';
 
-const styles = StyleSheet.create({
-  item: {
-    padding: 20,
-  },
-  imageStyle: {
-    width: 200,
-    height: 200,
-    resizeMode: 'stretch',
-  },
-});
+export const FlatListVertical = ({ data }) => {
+  const tailwind = useTailwind();
 
-export const FlatListVertical = ({data}) => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [activeImageUrl, setActiveImageUrl] = React.useState(null);
   const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
   const renderItem = ({item}) => <ImageCard item={item} />;
 
+  // resizeMode: 'stretch', image style
   const Item = ({downloadUrl}) => {
     return (
-      <View style={styles.item}>
+      <View style={tailwind('p-5')}>
         <Image
-          style={styles.imageStyle}
+          style={tailwind('w-48 h-48')}
           source={{
             uri: downloadUrl,
           }}
@@ -49,7 +41,7 @@ export const FlatListVertical = ({data}) => {
           setActiveImageUrl(item.download_url);
         }}>
         <View>
-          <Card style={{margin: 10, alignItems: 'center'}}>
+          <Card style={tailwind('items-center m-2.5')}>
             <Item downloadUrl={item.download_url} />
           </Card>
         </View>
@@ -58,7 +50,7 @@ export const FlatListVertical = ({data}) => {
   };
 
   return (
-    <View style={{alignItems: 'center'}}>
+    <View style={tailwind('items-center')}>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -73,17 +65,18 @@ export const FlatListVertical = ({data}) => {
   );
 };
 
-const MyModal = ({activeImageUrl, isModalVisible, handleModal}) => {
+const MyModal = ({ activeImageUrl, isModalVisible, handleModal }) => {
+  const tailwind = useTailwind();
   return (
     <Modal
-      style={{alignItems: 'center'}}
+      style={tailwind('items-center')}
       isVisible={isModalVisible}
       onBackdropPress={isModalVisible ? handleModal : undefined}>
       <Modal.Container>
-        <Modal.Header title="LogRocket is fab!" />
+        <Modal.Header title="Image" />
         <Modal.Body>
           <Image
-            style={{height: 330, width: 330, margin: 10}}
+            style={tailwind('h-80 w-80 m-2.5')}
             source={{
               uri: activeImageUrl,
             }}

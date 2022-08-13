@@ -3,44 +3,12 @@ import {
   TextInput,
   View,
   Button,
-  StyleSheet,
   KeyboardAvoidingView,
   Text,
   ToastAndroid,
 } from 'react-native';
 import Joi from 'react-native-joi-validation';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  innerContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
-  },
-  inputContainer: {
-    padding: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    margin: 5,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    color: 'black',
-    borderWidth: 1,
-    padding: 10,
-  },
-  button: {
-    marginHorizontal: 20,
-    marginTop: 5,
-  },
-  textContainer: {
-    color: 'black',
-  },
-});
+import {useTailwind} from 'tailwind-rn';
 
 var schema = Joi.object().keys({
   name: Joi.string().min(3).max(30).required().label('Name'),
@@ -54,6 +22,8 @@ var schema = Joi.object().keys({
 });
 
 const SignUpScreen = ({navigation}) => {
+  const tailwind = useTailwind();
+
   const userDetailsInitialState = {
     phoneNumber: '',
     emailId: '',
@@ -101,13 +71,13 @@ const SignUpScreen = ({navigation}) => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <View style={styles.innerContainer}>
-        <View style={styles.inputContainer}>
+    <KeyboardAvoidingView style={tailwind('flex-1')}>
+      <View style={tailwind('justify-around flex-1')}>
+        <View style={tailwind('p-2.5')}>
           <TextInput
             editable={isEditable}
             placeholderTextColor="gray"
-            style={styles.input}
+            style={tailwind('text-black border h-10 m-3 p-2.5')}
             value={userDetails.name}
             placeholder="Name"
             onChangeText={text => onInputChangeHandler('name', text)}
@@ -115,7 +85,7 @@ const SignUpScreen = ({navigation}) => {
           <TextInput
             editable={isEditable}
             placeholderTextColor="gray"
-            style={styles.input}
+            style={tailwind('text-black border h-10 m-3 p-2.5')}
             value={userDetails.phoneNumber}
             placeholder="Phone Number"
             onChangeText={text => onInputChangeHandler('phoneNumber', text)}
@@ -123,37 +93,33 @@ const SignUpScreen = ({navigation}) => {
           <TextInput
             editable={isEditable}
             placeholderTextColor="gray"
-            style={styles.input}
+            style={tailwind('text-black border h-10 m-3 p-2.5')}
             value={userDetails.emailId}
             placeholder="Email ID"
             onChangeText={text => onInputChangeHandler('emailId', text)}
           />
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={tailwind('flex-row justify-center m-1.5')}>
+          <Button onPress={onSubmitHandler} title="Submit" />
           <Button
-            style={styles.button}
-            onPress={onSubmitHandler}
-            title="Submit"
-          />
-          <Button
-            style={styles.button}
             onPress={onDisableHandler}
             title={isEditable ? 'Disable' : 'Enable'}
           />
           <Button
             disabled={!isEditable}
-            style={styles.button}
             onPress={onClearHandler}
             title="Clear"
           />
         </View>
         {isDataVisible && (
-          <View style={{margin: 5, padding: 3}}>
-            <Text style={styles.textContainer}>Name : {userDetails.name}</Text>
-            <Text style={styles.textContainer}>
+          <View style={tailwind('m-1 p-1.5')}>
+            <Text style={tailwind('text-black')}>
+              Name : {userDetails.name}
+            </Text>
+            <Text style={tailwind('text-black')}>
               Phone Number : {userDetails.phoneNumber}
             </Text>
-            <Text style={styles.textContainer}>
+            <Text style={tailwind('text-black')}>
               Email : {userDetails.emailId}
             </Text>
           </View>

@@ -1,27 +1,16 @@
 import React from 'react';
-import {Text, View, Button, StyleSheet} from 'react-native';
+import {Text, View, Button} from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: 'black',
-    fontSize: 40,
-  },
-  textSmall: {
-    color: 'black',
-    paddingBottom: 20,
-  },
-});
+import { useTailwind } from 'tailwind-rn';
 
 const LandingScreen = ({navigation}) => {
+
+  const tailwind = useTailwind();
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Oak</Text>
-        <Text style={styles.textSmall}>
+      <View style={tailwind('justify-center items-center flex-1')}>
+        <Text style={tailwind('text-black text-3xl')}>Oak</Text>
+        <Text style={tailwind('text-black pb-3')}>
           Estate & Plantation Management Simplified !
         </Text>
         <Button

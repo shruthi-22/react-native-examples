@@ -1,26 +1,18 @@
 import React from 'react';
 import {Text, View, StatusBar, Button} from 'react-native';
-import { StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import {useTailwind} from 'tailwind-rn';
 
 export function Home() {
+    const tailwind = useTailwind();
     const [count, setCount] = React.useState(0);
     const onClickHandler = () => {
       setCount(count + 1);
     };
   
     return (
-      <View style={styles.container}>
+      <View style={tailwind('justify-center items-center bg-black flex-1')}>
         <Button onPress={onClickHandler} title="Click me" />
-        <Text style={{color: 'black'}}>I was clicked {count} times</Text>
+        <Text style={tailwind('text-black')}>I was clicked {count} times</Text>
         <StatusBar style="auto" />
       </View>
     );
