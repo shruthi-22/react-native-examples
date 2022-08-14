@@ -11,13 +11,9 @@ export const icons = {
     outline: 'bus-outline',
     focused: 'bus',
   },
-  Offers: {
-    outline: 'pricetag-outline',
-    focused: 'pricetag',
-  },
-  Settings: {
-    outline: 'settings-outline',
-    focused: 'settings',
+  Transfer: {
+    outline: 'wallet-outline',
+    focused: 'wallet',
   },
 };
   

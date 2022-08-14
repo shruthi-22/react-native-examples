@@ -10,7 +10,7 @@ export function Home() {
     };
   
     return (
-      <View style={tailwind('justify-center items-center bg-black flex-1')}>
+      <View style={tailwind('justify-center items-center flex-1')}>
         <Button onPress={onClickHandler} title="Click me" />
         <Text style={tailwind('text-black')}>I was clicked {count} times</Text>
         <StatusBar style="auto" />

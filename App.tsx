@@ -13,12 +13,14 @@ import RootStackScreen from './src/screens/RootStackScreen';
 
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind.json';
+import { MoneyTransfer } from './src/components/MoneyTransfer';
 
 const App: () => Node = () => {
   return (
     <TailwindProvider utilities={utilities}>
       <NavigationContainer>
-        <RootStackScreen />
+        {/* <RootStackScreen /> */}
+        <MoneyTransfer />
       </NavigationContainer>
     </TailwindProvider>
   );
