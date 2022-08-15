@@ -11,7 +11,6 @@ export function Contacts() {
 
   const contacts = useSelector((state: RootState) => state.phoneBook.contacts)
   const dispatch = useDispatch();
-
   const tailwind = useTailwind();
 
   const [input, setInput] = React.useState({
@@ -19,6 +18,10 @@ export function Contacts() {
     phoneNumber: '',
   });
   const [data, setData] = React.useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const storeData = async value => {
     try {
@@ -48,10 +51,6 @@ export function Contacts() {
       console.log('Failed to clear the async storage.');
     }
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const onSubmitHandler = () => {
     if (input.phoneNumber && input.contactName) {
