@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import SwipeButton from 'rn-swipe-button';
 
 const SwipeIcon = () => (

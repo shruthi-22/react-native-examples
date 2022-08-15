@@ -14,7 +14,7 @@ const LandingScreen = ({navigation}) => {
           Estate & Plantation Management Simplified !
         </Text>
         <Button
-          onPress={() => navigation.navigate('SignUpScreen')}
+          onPress={() => navigation.navigate('HomeScreen')}
           title="Sign Up"
         />
       </View>

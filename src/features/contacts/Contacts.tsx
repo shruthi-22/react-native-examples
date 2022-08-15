@@ -1,11 +1,17 @@
 import React, {useEffect} from 'react';
 import {Text, View, TextInput, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useTailwind} from 'tailwind-rn';
+import { useTailwind } from 'tailwind-rn';
+import { useSelector, useDispatch } from 'react-redux';
+import { Contact, add as addContact, clear as clearContacts, RootState } from './contactSlice';
 
 let STORAGE_KEY = '@contacts';
 
 export function Contacts() {
+
+  const contacts = useSelector((state: RootState) => state.phoneBook.contacts)
+  const dispatch = useDispatch();
+
   const tailwind = useTailwind();
 
   const [input, setInput] = React.useState({
@@ -49,8 +55,9 @@ export function Contacts() {
 
   const onSubmitHandler = () => {
     if (input.phoneNumber && input.contactName) {
-      storeData([...data, input]);
-      setData([...data, input]);
+      // storeData([...data, input]);
+      // setData([...data, input]);
+      dispatch(addContact(input))
       setInput('');
     } else {
       alert('Please enter something');
@@ -59,15 +66,16 @@ export function Contacts() {
 
   const onClearHandler = () => {
     clearStorage();
-    setData([]);
+    dispatch(clearContacts())
+    // setData([]);
   };
 
   return (
     <View>
       <View style={tailwind('p-2.5')}>
         <Text style={tailwind('text-black text-xl')}>Existing Contacts</Text>
-        {data &&
-          data.map(contact => (
+        {contacts &&
+          contacts.map((contact:Contact) => (
             <Text
               key={contact.contactName}
               style={tailwind('text-black p-1 text-base')}>

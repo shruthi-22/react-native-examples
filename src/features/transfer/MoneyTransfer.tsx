@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {SwipeSlider} from './SwipeSlider';
+import { SwipeSlider } from '../../components/SwipeSlider';
 
 const styles = StyleSheet.create({
   elevation: {
@@ -27,7 +27,7 @@ export function MoneyTransfer() {
           <View style={tailwind('items-center')}>
             <Image
               style={tailwind('rounded-full w-28 h-28 m-6')}
-              source={require('../assets/images/user.jpg')}
+              source={require('../../assets/images/user.jpg')}
             />
             <Text style={tailwind('text-black mt-3 font-semibold text-2xl')}>
               Libiska Mandan

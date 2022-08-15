@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {FlatListHorizontal} from './FlatListHorizontal';
-import {FlatListVertical} from './FlatListVertical';
+import { FlatListHorizontal } from '../../components/FlatListHorizontal'; 
+import {FlatListVertical} from '../../components/FlatListVertical'; 
 import {View} from 'react-native';
 
 export function MyTrips() {

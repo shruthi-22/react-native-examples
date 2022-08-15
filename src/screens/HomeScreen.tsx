@@ -2,10 +2,10 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Home } from '../components/Home';
-import {Contacts} from '../components/Contacts';
-import { MyTrips } from '../components/MyTrips';
-import { MoneyTransfer } from '../components/MoneyTransfer';
+import { Home } from '../features/home/Home';
+import {Contacts} from '../features/contacts/Contacts';
+import { MyTrips } from '../features/trips/MyTrips';
+import { MoneyTransfer } from '../features/transfer/MoneyTransfer';
 import { icons } from '../styles/icons';
 
 

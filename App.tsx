@@ -13,16 +13,18 @@ import RootStackScreen from './src/screens/RootStackScreen';
 
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind.json';
-import { MoneyTransfer } from './src/components/MoneyTransfer';
+import {Provider} from 'react-redux';
+import {store} from './src/app/store';
 
 const App: () => Node = () => {
   return (
-    <TailwindProvider utilities={utilities}>
-      <NavigationContainer>
-        {/* <RootStackScreen /> */}
-        <MoneyTransfer />
-      </NavigationContainer>
-    </TailwindProvider>
+    <Provider store={store}>
+      <TailwindProvider utilities={utilities}>
+        <NavigationContainer>
+          <RootStackScreen />
+        </NavigationContainer>
+      </TailwindProvider>
+    </Provider>
   );
 };
 
